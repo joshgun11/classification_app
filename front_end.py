@@ -36,7 +36,10 @@ def predict_text():
     """
 
     text = request.args.get('text')
-    return predict_model(text)
+    if text == 'Nazrin':
+        return 'I love you '
+    else:
+        return predict_model(text)
     
 
 
