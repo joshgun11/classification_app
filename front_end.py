@@ -1,7 +1,7 @@
 
 import flasgger
 from flasgger import Swagger
-from flask import Flask,jsonify,request,render_template
+from flask import Flask,request,app,jsonify,url_for,render_template
 #from utilities import predict_model
 import keras
 import pickle
@@ -9,33 +9,22 @@ import re
 #from tensorflow.keras.preprocessing.sequence import pad_sequences
 from utilities import predict_model
 import os
+import numpy as np
 
 
 app = Flask(__name__)
-Swagger(app)
+ 
 
 
 @app.route('/')
 def my_form():
-    return "Welcome All"
+    return render_template('home.html')
 
-@app.route('/predict',methods = ["Get"])
+
+@app.route('/predict',methods = ["POST"])
 def predict_text():
-    """Let's Classify the tweets 
-    This is using docstrings for specifications.
-    ---
-    parameters:  
-      - name: text
-        in: query
-        type: string
-        required: true
-    responses:
-        200:
-            description: The output values
-        
-    """
 
-    text = request.args.get('text')
+    text = request.form.get("Enter your text")
     if text == 'Nazrin':
         return 'I love you '
     else:
