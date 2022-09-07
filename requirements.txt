@@ -1,0 +1,4 @@
+flasgger
+Flask
+tensorflow
+gunicorn
