@@ -26,7 +26,7 @@ def predict_text():
 
     text = request.form.get("Enter your text")
     if text == 'Nazrin':
-        return 'I love you '
+        return render_template("home.html",prediction_text="{}".format('I love you \u2764\uFE0F'))
     else:
         return predict_model(text)
     
