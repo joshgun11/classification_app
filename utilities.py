@@ -44,7 +44,7 @@ def predict(text,model,tokenizer):
     pred = model.predict(padded)
     predicted_class = pred.argmax(axis=-1)
    
-    classes  = {'Irrelevant': 0, 'Negative': 1, 'Neutral': 2, 'Positive': 3}
+    classes  = {0:'Irrelevant', 1:'Negative', 2:'Neutral', 3:'Positive'}
     actual_class = classes[str(predicted_class[0])]
     result = {"text":text,"used model":"Base Line","prediction":actual_class}
     return result
