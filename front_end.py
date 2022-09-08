@@ -10,25 +10,27 @@ import re
 from utilities import predict_model
 import os
 import numpy as np
+TEMPLATE_DIR = os.path.abspath('templates')
+STATIC_DIR = os.path.abspath('static')
 
-
-app = Flask(__name__)
+app = Flask(__name__, template_folder=TEMPLATE_DIR, static_folder=STATIC_DIR)
  
 
 
 @app.route('/')
 def my_form():
-    return render_template('home.html')
+    return render_template('Home3.html')
 
 
 @app.route('/predict',methods = ["POST"])
 def predict_text():
 
-    text = request.form.get("Enter your text")
+    text = request.form.get("Enter your opinion here")
     if text == 'Nazrin':
-        return render_template("home.html",prediction_text="{}".format('I love you \u2764\uFE0F'))
+        return render_template("Home3.html",prediction_text="{}".format('I love you \u2764\uFE0F'))
     else:
-        return predict_model(text)
+        result = predict_model(text)["prediction"]
+        return render_template("Home3.html",prediction_text="{}".format('Your Opinion is: '+ result))
     
 
 
