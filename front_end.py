@@ -26,11 +26,10 @@ def my_form():
 def predict_text():
 
     text = request.form.get("Enter your opinion here")
-    if text == 'Nazrin':
-        return render_template("Home3.html",prediction_text="{}".format('I love you \u2764\uFE0F'))
-    else:
-        result = predict_model(text)["prediction"]
-        return render_template("Home3.html",prediction_text="{}".format('Your Opinion is: '+ result))
+    
+ 
+    result = predict_model(text)["prediction"]
+    return render_template("Home3.html",prediction_text="{}".format('Your Opinion is: '+ result))
     
 
 
